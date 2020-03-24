@@ -26,15 +26,18 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 public class MainApp {
-	// CONSTANTES
+	// GLOBAL APP CONSTANTS
 
-	private final static String APP_NAME = "Chatty";
-	private final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Chatty/commits/update"; // github api, replace this params in your case. "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch"
-	private final static String REPO_URL = "https://github.com/FranciscoDadone/Chatty/archive/update.zip";
-	private final static String ZIP_DIRECTORY = "./Update.zip"; // this is a temp file for later decompression
-	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = "."; //this is where the final app will be decompressed
-	private final static String FINAL_APP_EXECUTABLE = "java -jar Chatty-update/App.jar";
-	private final static String FILE_TO_DETECT_UPDATES = "lastCommit.txt";
+	private final static String APP_NAME = "Chatty";	//Your application name
+	private final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Chatty/commits/update"; // GitHub API link for yout repo, 
+																											// replace this params in your case. 
+																											// "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch" 
+																											// (the default GitHub branch is 'master')
+	private final static String REPO_URL = "https://github.com/FranciscoDadone/Chatty/archive/update.zip"; // Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master')
+	private final static String ZIP_DIRECTORY = "./Update.zip"; // The directory where the downloaded zip file will be contained and later in the installation removed.
+	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = "."; //this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in)
+	private final static String FINAL_APP_EXECUTABLE = "java -jar Chatty-update/App.jar"; //This is the command to run the application after decompression or after checking for updates
+	private final static String FILE_TO_DETECT_UPDATES = "lastCommit.txt"; // This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
 	
 	/**
 	 * Launch the application.
@@ -56,10 +59,8 @@ public class MainApp {
 			lastCommitID = (String) json.get("sha");
 		    System.out.println("Github last commit ID: " + lastCommitID);
 		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	    
@@ -87,13 +88,11 @@ public class MainApp {
 	    	try {
 				unzip(ZIP_DIRECTORY, FINAL_APP_DECOMPRESSION_DIRECTORY, "");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	try {
 				Runtime.getRuntime().exec(FINAL_APP_EXECUTABLE);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	
@@ -107,7 +106,6 @@ public class MainApp {
 			try {
 				Runtime.getRuntime().exec(FINAL_APP_EXECUTABLE);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			frame.dispose();
@@ -176,7 +174,6 @@ public class MainApp {
 		      br.close();
 		      return everything;
 		  } catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		  return "";
