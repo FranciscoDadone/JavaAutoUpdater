@@ -10,7 +10,8 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
   This app is designed to use it as a launcher for automatic updates for any other java application.
   When you double click this app it will prompt you with the Updates checker and if is any update avaible it will download and install it for your client and later launch the app, and if isn't any updates it will launch the app automatically.
   
- - When it detects updates or first open 
+ - When it detects updates or first open
+ 
  ![](https://media.giphy.com/media/JQAxNQixOdaVghR8S7/giphy.gif)
  
  
