@@ -14,6 +14,10 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
  
  ![](https://media.giphy.com/media/JQAxNQixOdaVghR8S7/giphy.gif)
  
+ - When there isn't any updates avaible for the app
+ 
+ ![](https://media.giphy.com/media/cPO9DlKKNLPxDs5Cvw/giphy.gif)
+ 
  
  
  # ¿How to use it?
@@ -26,3 +30,5 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
   - FINAL_APP_DECOMPRESSION_DIRECTORY: this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in).
   - FINAL_APP_EXECUTABLE: This is the command to run the application after decompression or after checking for updates.
   - FILE_TO_DETECT_UPDATES: This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not.
+  
+ When you finished changing all the settings, you have to compile the project as a runnable jar and use that executable as your launcher for your application.
