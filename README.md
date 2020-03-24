@@ -1,6 +1,6 @@
 # JavaAutoUpdater
 
-JavaAutoUpdater is an application Launcher that auto-updates the app for the user, it can be used in any Java application!
+JavaAutoUpdater is a Launcher that auto-updates the app for the user, it can be used in any Java application!
 This is a cheap option for an auto updater in java because it uses a GitHub repository like a download server and the GitHub API to control the version of the app using the last commit ID provided by the API.
 
  - IMPORTANT: this app don't use a webserver to store the files and it's not recomended for large scale production, only for small ones.
