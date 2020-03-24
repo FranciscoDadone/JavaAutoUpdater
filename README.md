@@ -5,6 +5,15 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
 
  - IMPORTANT: this app don't use a webserver to store the files and it's not recomended for large scale production, only for small ones.
  
+ 
+ # ¿How it works?
+  This app is designed to use it as a launcher for automatic updates for any other java application.
+  When you double click this app it will prompt you with the Updates checker and if is any update avaible it will download and install it for your client and later launch the app, and if isn't any updates it will launch the app automatically.
+  
+ 
+ 
+ 
+ 
  # ¿How to use it?
  
  The first thing you want to do is clone this repo and edit in 'com.franciscodadone.main.MainApp.java' the global app constants.
