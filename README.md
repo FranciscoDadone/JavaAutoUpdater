@@ -9,8 +9,8 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
  
  The first thing you want to do is clone this repo and edit in 'com.franciscodadone.main.MainApp.java' the global app constants.
   - APP_NAME: Your application name
-  - JSON_URL: GitHub API link for yout repo, replace this params in your case. "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch" (the default GitHub branch is 'master'). Example: 'https://api.github.com/repos/FranciscoDadone/Chatty/commits/update'
-  - REPO_URL: Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master'). Example: 'https://github.com/FranciscoDadone/Chatty/archive/update.zip'
+  - JSON_URL: GitHub API link for yout repo, replace this params in your case. ```'https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch'``` (the default GitHub branch is 'master'). Example: ```'https://api.github.com/repos/FranciscoDadone/Chatty/commits/update'```
+  - REPO_URL: Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master'). Example: ```'https://github.com/FranciscoDadone/Chatty/archive/update.zip'```
   - ZIP_DIRECTORY: The directory where the downloaded zip file will be contained and later in the installation removed.
   - FINAL_APP_DECOMPRESSION_DIRECTORY: this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in).
   - FINAL_APP_EXECUTABLE: This is the command to run the application after decompression or after checking for updates.
