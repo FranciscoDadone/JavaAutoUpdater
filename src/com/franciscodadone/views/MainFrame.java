@@ -32,10 +32,10 @@ public class MainFrame extends JFrame {
 		lblBuscando.setForeground(Color.BLACK);
 		lblBuscando.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
-		JLabel lblUpdates = new JLabel("actualizaciones...\r\n");
+		JLabel lblUpdates = new JLabel("actualizaciones\r\n");
 		lblUpdates.setForeground(Color.BLACK);
 		lblUpdates.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUpdates.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblUpdates.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/splash/loading.gif")));
