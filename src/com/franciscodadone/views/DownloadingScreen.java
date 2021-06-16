@@ -13,9 +13,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class DownloadingScreen extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -31,12 +28,12 @@ public class DownloadingScreen extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		
-		JLabel lblBuscando = new JLabel("Downloading");
+		JLabel lblBuscando = new JLabel("Descargando");
 		lblBuscando.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBuscando.setForeground(Color.BLACK);
 		lblBuscando.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
-		JLabel lblUpdates = new JLabel("updates...\r\n");
+		JLabel lblUpdates = new JLabel("actualizaciones...\r\n");
 		lblUpdates.setForeground(Color.BLACK);
 		lblUpdates.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdates.setFont(new Font("Tahoma", Font.PLAIN, 25));

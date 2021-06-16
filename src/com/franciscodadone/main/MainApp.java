@@ -65,7 +65,11 @@ public class MainApp {
 	 * This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
 	 */
 	private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/gitCommit.txt";
-	
+
+	private final static String FRAME_TITLE = APP_NAME;
+
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -84,7 +88,7 @@ public class MainApp {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setTitle(APP_NAME + " Updater");
+		frame.setTitle(FRAME_TITLE);
 
 		// Get the last commit ID
 		
@@ -106,7 +110,7 @@ public class MainApp {
 	    	ds.setVisible(true);
 	    	ds.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	ds.setResizable(false);
-	    	ds.setTitle(APP_NAME + " Updater");
+	    	ds.setTitle(FRAME_TITLE);
 	    	frame.dispose();
 	    	try (BufferedInputStream inputStream = new BufferedInputStream(new URL(REPO_URL).openStream());
 	    			  FileOutputStream fileOS = new FileOutputStream(ZIP_DIRECTORY)) {
@@ -184,13 +188,11 @@ public class MainApp {
 	        }
 	        catch(Exception ex) {
 	            System.out.println(
-	                "Error updating the commit ID '" + FILE_TO_DETECT_UPDATES + "'");
+	                "Error updating the commit ID '" + FILE_TO_DETECT_UPDATES + "'"
+				);
 	        } finally {
-	        	
 	        	ds.dispose();	//kills the downloading screen and boots the actual app
-	        
 	        }
-		  
 	  }
 	  
 	  private static String getCommitID() {
