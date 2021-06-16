@@ -1,4 +1,4 @@
-package com.franciscodadone.vistas;
+package com.franciscodadone.views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class DownloadingScreen extends JFrame {
+public class MainFrame extends JFrame {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class DownloadingScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DownloadingScreen() {
+	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 196, 281);
 		contentPane = new JPanel();
@@ -31,7 +31,7 @@ public class DownloadingScreen extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		
-		JLabel lblBuscando = new JLabel("Downloading");
+		JLabel lblBuscando = new JLabel("Searching for");
 		lblBuscando.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBuscando.setForeground(Color.BLACK);
 		lblBuscando.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -42,7 +42,7 @@ public class DownloadingScreen extends JFrame {
 		lblUpdates.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(DownloadingScreen.class.getResource("/splash/loading.gif")));
+		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/splash/loading.gif")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

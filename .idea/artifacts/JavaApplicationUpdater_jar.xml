@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaApplicationUpdater:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaApplicationUpdater_jar</output-path>
+    <root id="archive" name="JavaApplicationUpdater.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="JavaApplicationUpdater" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20190722/json-20190722.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/lingala/zip4j/zip4j/1.3.2/zip4j-1.3.2.jar" path-in-jar="/" />
+      <element id="directory" name="splash">
+        <element id="dir-copy" path="$PROJECT_DIR$/src/splash" />
+      </element>
+    </root>
+  </artifact>
+</component>

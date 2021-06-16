@@ -14,13 +14,14 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileSystemView;
 
 import org.json.JSONObject;
 import java.io.Reader;
 import org.json.JSONException;
 
-import com.franciscodadone.vistas.DownloadingScreen;
-import com.franciscodadone.vistas.MainFrame;
+import com.franciscodadone.views.DownloadingScreen;
+import com.franciscodadone.views.MainFrame;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -28,29 +29,63 @@ import net.lingala.zip4j.exception.ZipException;
 public class MainApp {
 	// GLOBAL APP CONSTANTS
 
-	private final static String APP_NAME = "Chatty";	//Your application name
-	private final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Chatty/commits/update"; // GitHub API link for yout repo, 
-																											// replace this params in your case. 
-																											// "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch" 
-																											// (the default GitHub branch is 'master')
-	private final static String REPO_URL = "https://github.com/FranciscoDadone/Chatty/archive/update.zip"; // Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master')
-	private final static String ZIP_DIRECTORY = "./Update.zip"; // The directory where the downloaded zip file will be contained and later in the installation removed.
-	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = "."; //this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in)
-	private final static String FINAL_APP_EXECUTABLE = "java -jar Chatty-update/App.jar"; //This is the command to run the application after decompression or after checking for updates
-	private final static String FILE_TO_DETECT_UPDATES = "lastCommit.txt"; // This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
+	/**
+	 * Your application name
+	 */
+	private final static String APP_NAME = "Brikelos";
+
+	/**
+	 * GitHub API link for your repo (replace this params in your case).
+	 * "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch"
+	 * (the default GitHub branch is 'master')
+	 */
+	private final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Brikelos-app/commits/update";
+
+	/**
+	 * Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master')
+	 */
+	private final static String REPO_URL = "https://github.com/FranciscoDadone/Brikelos-app/archive/update.zip";
+
+	/**
+	 * The directory where the downloaded zip file will be contained and later in the installation removed.
+	 */
+	private final static String ZIP_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/Update.zip";
+
+	/**
+	 * this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in)
+	 */
+	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos";
+
+	/**
+	 * This is the command to run the application after decompression or after checking for updates
+	 */
+	private final static String FINAL_APP_EXECUTABLE = "java -jar " + FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/Brikelos-app-update/App.jar";
+
+	/**
+	 * This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
+	 */
+	private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/gitCommit.txt";
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
+		/**
+		 * Checks if the dir is present.
+		 */
+		File directory = new File(FINAL_APP_DECOMPRESSION_DIRECTORY);
+		if (!directory.exists()){
+			directory.mkdirs();
+		}
+
+
 		frame = new MainFrame();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle(APP_NAME + " Updater");
-		
-		
-		// ------------------- //
+
 		// Get the last commit ID
 		
 		JSONObject json;
