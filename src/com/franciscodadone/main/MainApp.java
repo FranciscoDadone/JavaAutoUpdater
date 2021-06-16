@@ -145,6 +145,18 @@ public class MainApp {
                 e.printStackTrace();
             }
 
+            File[] updateFolderFiles = new File(FINAL_APP_DECOMPRESSION_DIRECTORY + File.separator + REPOSITORY_NAME + "-" + UPDATE_BRANCH_NAME).listFiles();
+            File[] srcFolderFiles = new File(FINAL_APP_DECOMPRESSION_DIRECTORY).listFiles();
+
+            for(File fileInSrc: srcFolderFiles) {
+                for(File fileInUpdate: updateFolderFiles) {
+                    if(fileInSrc.equals(fileInUpdate)) {
+                        fileInSrc.delete();
+                    }
+                }
+            }
+
+
             Utils.moveFiles(
                     new File(FINAL_APP_DECOMPRESSION_DIRECTORY + File.separator + REPOSITORY_NAME + "-" + UPDATE_BRANCH_NAME),
                     new File(FINAL_APP_DECOMPRESSION_DIRECTORY)
