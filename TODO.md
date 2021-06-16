@@ -1,0 +1,3 @@
+- Fix the no internet issue.
+- Self update ?
+- App icon
