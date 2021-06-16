@@ -49,22 +49,22 @@ public class MainApp {
 	/**
 	 * The directory where the downloaded zip file will be contained and later in the installation removed.
 	 */
-	private final static String ZIP_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/Update.zip";
+	private final static String ZIP_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "Update.zip";
 
 	/**
 	 * this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in)
 	 */
-	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos";
+	private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos";
 
 	/**
 	 * This is the command to run the application after decompression or after checking for updates
 	 */
-	private final static String FINAL_APP_EXECUTABLE = "java -jar " + FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/Brikelos-app-update/App.jar";
+	private final static String FINAL_APP_EXECUTABLE = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "Brikelos-app-update" + File.separator + "App.jar";
 
 	/**
 	 * This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
 	 */
-	private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "/Brikelos/gitCommit.txt";
+	private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "gitCommit.txt";
 
 	private final static String FRAME_TITLE = APP_NAME;
 
@@ -75,6 +75,7 @@ public class MainApp {
 	 */
 	public static void main(String[] args) {
 
+		System.out.println(System.getProperty("os.name"));
 		/**
 		 * Checks if the dir is present.
 		 */
@@ -130,7 +131,7 @@ public class MainApp {
 				e.printStackTrace();
 			}
 	    	try {
-				Runtime.getRuntime().exec(FINAL_APP_EXECUTABLE);
+				Runtime.getRuntime().exec("java -jar " + FINAL_APP_EXECUTABLE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -143,8 +144,8 @@ public class MainApp {
 		} else {
 			System.out.println("No updates found!");
 			try {
-				Runtime.getRuntime().exec(FINAL_APP_EXECUTABLE);
-				System.out.println("Executing: " + FINAL_APP_EXECUTABLE);
+				Runtime.getRuntime().exec("java -jar " + FINAL_APP_EXECUTABLE);
+				System.out.println("Executing: " + "java -jar " + FINAL_APP_EXECUTABLE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
