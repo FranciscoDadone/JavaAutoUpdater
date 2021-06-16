@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
 
+import com.franciscodadone.util.Utils;
 import org.json.JSONObject;
 
 import java.io.Reader;
@@ -62,15 +63,27 @@ public class MainApp {
     /**
      * This is the command to run the application after decompression or after checking for updates
      */
-    private final static String FINAL_APP_EXECUTABLE = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "Brikelos-app-update" + File.separator + "App.jar";
+    private final static String FINAL_APP_EXECUTABLE = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "App.jar";
 
     /**
-     * This file only serves the porpuse of storing the lastest commit ID so the launcher knows if it has to update the app or not
+     * This file only serves the purpose of storing the latest commit ID so the launcher knows if it has to update the app or not
      */
-    private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "gitCommit.txt";
+    private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "update.txt";
 
+    /**
+     * Title in the top of the window.
+     */
     private final static String FRAME_TITLE = APP_NAME;
 
+    /**
+     * Name of the branch that handles the updates.
+     */
+    private final static String UPDATE_BRANCH_NAME = "update";
+
+    /**
+     * Name of your repository.
+     */
+    private final static String REPOSITORY_NAME = "Brikelos-app";
 
     /**
      * Launch the application.
@@ -131,6 +144,12 @@ public class MainApp {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            Utils.moveFiles(
+                    new File(FINAL_APP_DECOMPRESSION_DIRECTORY + File.separator + REPOSITORY_NAME + "-" + UPDATE_BRANCH_NAME),
+                    new File(FINAL_APP_DECOMPRESSION_DIRECTORY)
+            );
+
 
             launchApp();
 
