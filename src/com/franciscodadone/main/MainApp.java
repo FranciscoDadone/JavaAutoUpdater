@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
 
+import com.franciscodadone.util.UpdaterConfig;
 import com.franciscodadone.util.Utils;
 import org.json.JSONObject;
 
@@ -30,64 +31,8 @@ import com.franciscodadone.views.MainFrame;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
-public class MainApp {
-    // GLOBAL APP CONSTANTS
+public class MainApp extends UpdaterConfig {
 
-    /**
-     * Your application name
-     */
-    private final static String APP_NAME = "Brikelos";
-
-    /**
-     * GitHub API link for your repo (replace this params in your case).
-     * "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch"
-     * (the default GitHub branch is 'master')
-     */
-    private final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Brikelos-app/commits/update";
-
-    /**
-     * Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master')
-     */
-    private final static String REPO_URL = "https://github.com/FranciscoDadone/Brikelos-app/archive/update.zip";
-
-    /**
-     * The directory where the downloaded zip file will be contained and later in the installation removed.
-     */
-    private final static String ZIP_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "Update.zip";
-
-    /**
-     * this is where the final app will be decompressed ('.' is in the same directory that this Launcher is in)
-     */
-    private final static String FINAL_APP_DECOMPRESSION_DIRECTORY = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos";
-
-    /**
-     * This is the command to run the application after decompression or after checking for updates
-     */
-    private final static String FINAL_APP_EXECUTABLE = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "App.jar";
-
-    /**
-     * This file only serves the purpose of storing the latest commit ID so the launcher knows if it has to update the app or not
-     */
-    private final static String FILE_TO_DETECT_UPDATES = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + "Brikelos" + File.separator + "update.txt";
-
-    /**
-     * Title in the top of the window.
-     */
-    private final static String FRAME_TITLE = APP_NAME;
-
-    /**
-     * Name of the branch that handles the updates.
-     */
-    private final static String UPDATE_BRANCH_NAME = "update";
-
-    /**
-     * Name of your repository.
-     */
-    private final static String REPOSITORY_NAME = "Brikelos-app";
-
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
 
         /**
@@ -145,27 +90,36 @@ public class MainApp {
                 e.printStackTrace();
             }
 
+            /**
+             * Deleting files in the source directory that will be updated.
+             * This is mainly to fix a windows issue. In linux worked fine...
+             */
             File[] updateFolderFiles = new File(FINAL_APP_DECOMPRESSION_DIRECTORY + File.separator + REPOSITORY_NAME + "-" + UPDATE_BRANCH_NAME).listFiles();
             File[] srcFolderFiles = new File(FINAL_APP_DECOMPRESSION_DIRECTORY).listFiles();
-
             for(File fileInSrc: srcFolderFiles) {
                 for(File fileInUpdate: updateFolderFiles) {
                     if(fileInSrc.getName().equals(fileInUpdate.getName())) {
-                        System.out.println("deleting: " + fileInSrc);
                         fileInSrc.delete();
                     }
                 }
             }
 
-
+            /**
+             * Moves the files from the extracted folder to the main folder and deletes them.
+             */
             Utils.moveFiles(
                     new File(FINAL_APP_DECOMPRESSION_DIRECTORY + File.separator + REPOSITORY_NAME + "-" + UPDATE_BRANCH_NAME),
                     new File(FINAL_APP_DECOMPRESSION_DIRECTORY)
             );
 
-
+            /**
+             * Launches the app.
+             */
             launchApp();
 
+            /**
+             * Deletes the zip file.
+             */
             File updateFile = new File(ZIP_DIRECTORY);
             updateFile.delete();
 
@@ -176,7 +130,6 @@ public class MainApp {
             launchApp();
             frame.dispose();
         }
-
     }
 
     // READING JSON FROM GITHUB API ------------- //
@@ -200,8 +153,6 @@ public class MainApp {
             is.close();
         }
     }
-    // ------------------------- //
-
 
     private static void newCommitID(String commitID) {
         try {

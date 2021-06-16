@@ -22,7 +22,7 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
  
  # ¿How to use it?
  
- The first thing you want to do is clone this repo and edit in ```'com.franciscodadone.main.MainApp.java'``` the global app constants.
+ The first thing you want to do is clone this repo and edit in ```'com.franciscodadone.utils.UpdaterConfig.java'``` the global app constants.
   - APP_NAME: Your application name
   - JSON_URL: GitHub API link for your repo, replace this params in your case. ```'https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch'``` (the default GitHub branch is 'master'). Example of this: ```'https://api.github.com/repos/FranciscoDadone/Chatty/commits/update'```
   - REPO_URL: Your repository URL followed by ```'/archive/your_branch_name_here.zip'``` (default branch name 'master'). Example: ```'https://github.com/FranciscoDadone/Chatty/archive/update.zip'```
