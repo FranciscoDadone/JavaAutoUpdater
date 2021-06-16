@@ -144,6 +144,7 @@ public class MainApp {
 			System.out.println("No updates found!");
 			try {
 				Runtime.getRuntime().exec(FINAL_APP_EXECUTABLE);
+				System.out.println("Executing: " + FINAL_APP_EXECUTABLE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
