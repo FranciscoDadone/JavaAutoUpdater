@@ -151,6 +151,7 @@ public class MainApp {
             for(File fileInSrc: srcFolderFiles) {
                 for(File fileInUpdate: updateFolderFiles) {
                     if(fileInSrc.equals(fileInUpdate)) {
+                        System.out.println("deleting: " + fileInSrc);
                         fileInSrc.delete();
                     }
                 }
