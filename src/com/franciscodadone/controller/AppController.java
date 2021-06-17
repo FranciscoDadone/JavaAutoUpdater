@@ -12,6 +12,12 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class AppController extends UpdaterConfig {
+
+    /**
+     * Moves the contents of a folder to another.
+     * @param sourceFile
+     * @param destFile
+     */
     public static void moveFiles(File sourceFile, File destFile) {
         if (sourceFile.isDirectory()) {
             File[] files = sourceFile.listFiles();
@@ -25,7 +31,12 @@ public class AppController extends UpdaterConfig {
         }
     }
 
-    // READING JSON FROM GITHUB API ------------- //
+    /**
+     * Reads the JSON.
+     * @param rd
+     * @return
+     * @throws IOException
+     */
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -35,6 +46,13 @@ public class AppController extends UpdaterConfig {
         return sb.toString();
     }
 
+    /**
+     * Gets the JSON response from GitHub.
+     * @param url
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
@@ -47,6 +65,10 @@ public class AppController extends UpdaterConfig {
         }
     }
 
+    /**
+     * Updates the commit ID in the saved file.
+     * @param commitID
+     */
     public static void newCommitID(String commitID) {
         try {
             FileWriter fileWriter = new FileWriter(FILE_TO_DETECT_UPDATES);
@@ -61,12 +83,15 @@ public class AppController extends UpdaterConfig {
                     "Error updating the commit ID '" + FILE_TO_DETECT_UPDATES + "'"
             );
         } finally {
-            MainApp.ds.dispose();    //kills the downloading screen and boots the actual app
+            MainApp.ds.dispose();    //kills the downloading screen
         }
     }
 
+    /**
+     * Reads the commit ID from the saved file.
+     * @return
+     */
     public static String getCommitID() {
-
         try {
             BufferedReader br = new BufferedReader(new FileReader(FILE_TO_DETECT_UPDATES));
             StringBuilder sb = new StringBuilder();
@@ -81,13 +106,20 @@ public class AppController extends UpdaterConfig {
             br.close();
             return everything;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("No '" + FILE_TO_DETECT_UPDATES + "' found.");
         }
         return "";
     }
 
+    /**
+     * Unzips a zip file
+     * Used to unzip the downloaded file.
+     *
+     * @param source
+     * @param destination
+     * @param password
+     */
     public static void unzip(String source, String destination, String password) {
-
         try {
             ZipFile zipFile = new ZipFile(source);
             if (zipFile.isEncrypted()) {
@@ -99,15 +131,33 @@ public class AppController extends UpdaterConfig {
         }
     }
 
-    public static void launchApp() {
+    /**
+     * Launches the updated app.
+     * @return boolean
+     */
+    public static boolean launchApp() {
         try {
-            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                Runtime.getRuntime().exec("java -jar " + '"' + FINAL_APP_EXECUTABLE + '"');
-            } else {
-                Runtime.getRuntime().exec("java -jar " + FINAL_APP_EXECUTABLE);
-            }
+            /**
+             * If it is windows it adds " to the path.
+             */
+            Process p = Runtime.getRuntime().exec(
+                    (System.getProperty("os.name").toLowerCase().contains("windows")) ?
+                            "java -jar" + '"' + FINAL_APP_EXECUTABLE + '"' :
+                            "java -jar " + FINAL_APP_EXECUTABLE
+            );
+
+            /**
+             * Checks for errors in the output.
+             * If there are errors... returns false and displays a JOptionPane.
+             */
+            BufferedReader stdError = new BufferedReader(new
+                    InputStreamReader(p.getErrorStream())
+            );
+            if(stdError.readLine().toLowerCase().contains("error")) return false;
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

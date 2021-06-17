@@ -59,8 +59,4 @@ public class UpdaterConfig {
      */
     protected final static String REPOSITORY_NAME = "Brikelos-app";
 
-    /**
-     * Launch the application.
-     */
-
 }

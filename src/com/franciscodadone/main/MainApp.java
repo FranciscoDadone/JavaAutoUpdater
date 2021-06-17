@@ -5,15 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-
-import javax.swing.JFrame;
-
+import javax.swing.*;
 import com.franciscodadone.util.UpdaterConfig;
 import com.franciscodadone.controller.AppController;
 import org.json.JSONObject;
-
-import org.json.JSONException;
-
 import com.franciscodadone.views.DownloadingScreen;
 import com.franciscodadone.views.MainFrame;
 
@@ -36,28 +31,47 @@ public class MainApp extends UpdaterConfig {
         frame.setResizable(false);
         frame.setTitle(FRAME_TITLE);
 
-        // Get the last commit ID
-
+        /**
+         * Assigns to lastCommitID the commit ID from GitHub.
+         */
         JSONObject json;
         try {
             json = AppController.readJsonFromUrl(JSON_URL);
             lastCommitID = (String) json.get("sha");
             System.out.println("Github last commit ID: " + lastCommitID);
-        } catch (JSONException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (Exception e1) {
+            if(!AppController.launchApp()) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Necesitas internet para descargar la aplicación por primera vez.",
+                        "ERROR",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+            frame.dispose();
+            ds.dispose();
         }
 
+        /**
+         * If true, an update was found.
+         * Else... it launches the app.
+         */
         if (!AppController.getCommitID().trim().equals(lastCommitID)) {
-            //DOWNLOADING FILES...
             System.out.println("Update found!");
+
+            /**
+             * Setting up downloading screen
+             */
             ds = new DownloadingScreen();
             ds.setVisible(true);
             ds.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             ds.setResizable(false);
             ds.setTitle(FRAME_TITLE);
             frame.dispose();
+
+            /**
+             * Downloading the update.
+             */
             try (BufferedInputStream inputStream = new BufferedInputStream(new URL(REPO_URL).openStream());
                  FileOutputStream fileOS = new FileOutputStream(ZIP_DIRECTORY)) {
                 byte[] data = new byte[1024];
@@ -70,6 +84,9 @@ public class MainApp extends UpdaterConfig {
                 e.printStackTrace();
             }
 
+            /**
+             * Unzipping the compressed downloaded file.
+             */
             try {
                 AppController.unzip(ZIP_DIRECTORY, FINAL_APP_DECOMPRESSION_DIRECTORY, "");
             } catch (Exception e) {

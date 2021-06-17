@@ -17,7 +17,7 @@ public class DownloadingScreen extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Create the frame.
+	 * Create the download frame.
 	 */
 	public DownloadingScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
