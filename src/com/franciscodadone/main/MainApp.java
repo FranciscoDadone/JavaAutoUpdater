@@ -24,7 +24,6 @@ public class MainApp extends UpdaterConfig {
             directory.mkdirs();
         }
 
-
         frame = new MainFrame();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
