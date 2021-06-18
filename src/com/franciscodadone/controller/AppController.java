@@ -150,11 +150,11 @@ public class AppController extends UpdaterConfig {
              * Checks for errors in the output.
              * If there are errors... returns false and displays a JOptionPane.
              */
-            BufferedReader stdError = new BufferedReader(new
-                    InputStreamReader(p.getErrorStream())
-            );
-            if(stdError.readLine().toLowerCase().contains("error")) return false;
-            return true;
+            InputStream error = p.getErrorStream();
+            String err = "";
+            for (int i = 0; i < error.available(); i++) err += error.read();
+
+            return !err.toLowerCase().contains("error");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -39,16 +39,20 @@ public class MainApp extends UpdaterConfig {
             lastCommitID = (String) json.get("sha");
             System.out.println("Github last commit ID: " + lastCommitID);
         } catch (Exception e1) {
-            if(!AppController.launchApp()) {
+            e1.printStackTrace();
+            boolean launched = AppController.launchApp();
+            System.out.println(launched);
+            if(!launched) {
                 JOptionPane.showMessageDialog(
                         null,
                         "Necesitas internet para descargar la aplicación por primera vez.",
                         "ERROR",
                         JOptionPane.ERROR_MESSAGE
                 );
+            } else {
+                frame.dispose();
+                ds.dispose();
             }
-            frame.dispose();
-            ds.dispose();
         }
 
         /**
@@ -129,8 +133,10 @@ public class MainApp extends UpdaterConfig {
 
         } else {
             System.out.println("No updates found!");
+            MainApp.frame.dispose();
             AppController.launchApp();
-            frame.dispose();
+            System.exit(0);
+//            ds.dispose();
         }
     }
 

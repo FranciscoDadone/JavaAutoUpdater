@@ -1,2 +1,1 @@
 - Self update ?
-- App icon
