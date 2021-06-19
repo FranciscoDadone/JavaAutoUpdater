@@ -132,7 +132,7 @@ public class MainApp extends UpdaterConfig {
 
         } else {
             System.out.println("No updates found!");
-            MainApp.frame.dispose();
+//            MainApp.frame.dispose();
             AppController.launchApp();
 //            System.exit(0);
 //            ds.dispose();
