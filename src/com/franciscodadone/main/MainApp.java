@@ -41,7 +41,6 @@ public class MainApp extends UpdaterConfig {
         } catch (Exception e1) {
             e1.printStackTrace();
             boolean launched = AppController.launchApp();
-            System.out.println(launched);
             if(!launched) {
                 JOptionPane.showMessageDialog(
                         null,
@@ -135,7 +134,7 @@ public class MainApp extends UpdaterConfig {
             System.out.println("No updates found!");
             MainApp.frame.dispose();
             AppController.launchApp();
-            System.exit(0);
+//            System.exit(0);
 //            ds.dispose();
         }
     }

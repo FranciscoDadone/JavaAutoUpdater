@@ -154,6 +154,8 @@ public class AppController extends UpdaterConfig {
             String err = "";
             for (int i = 0; i < error.available(); i++) err += error.read();
 
+
+
             return !err.toLowerCase().contains("error");
         } catch (IOException e) {
             e.printStackTrace();
