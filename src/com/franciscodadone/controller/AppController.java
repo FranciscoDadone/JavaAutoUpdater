@@ -142,7 +142,7 @@ public class AppController extends UpdaterConfig {
              */
             Process p = Runtime.getRuntime().exec(
                     (System.getProperty("os.name").toLowerCase().contains("windows")) ?
-                            "java -jar" + '"' + FINAL_APP_EXECUTABLE + '"' :
+                            "java -jar " + '"' + FINAL_APP_EXECUTABLE + '"' :
                             "java -jar " + FINAL_APP_EXECUTABLE
             );
 
