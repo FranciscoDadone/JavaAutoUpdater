@@ -17,12 +17,12 @@ public class UpdaterConfig {
      * "https://api.github.com/repos/:githubUsername/:githubRepo/commits/:githubBranch"
      * (the default GitHub branch is 'master')
      */
-    protected final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Brikelos-app/commits/update";
+    protected final static String JSON_URL = "https://api.github.com/repos/FranciscoDadone/Brikelos-app/commits/update-dev";
 
     /**
      * Your repository URL followed by '/archive/your_branch_name_here.zip' (default branch name 'master')
      */
-    protected final static String REPO_URL = "https://github.com/FranciscoDadone/Brikelos-app/archive/update.zip";
+    protected final static String REPO_URL = "https://github.com/FranciscoDadone/Brikelos-app/archive/update-dev.zip";
 
     /**
      * The directory where the downloaded zip file will be contained and later in the installation removed.
@@ -52,7 +52,7 @@ public class UpdaterConfig {
     /**
      * Name of the branch that handles the updates.
      */
-    protected final static String UPDATE_BRANCH_NAME = "update";
+    protected final static String UPDATE_BRANCH_NAME = "update-dev";
 
     /**
      * Name of your repository.
