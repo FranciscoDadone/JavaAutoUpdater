@@ -3,10 +3,10 @@
 JavaAutoUpdater is a Launcher that auto-updates the app for the user, it can be used in any Java application!
 This is a cheap option for an auto updater in java because it uses a GitHub repository like a download server and the GitHub API to control the version of the app using the last commit ID provided by the API.
 
- - IMPORTANT: this app doesn't use a webserver to store the files and it isn't recomended for large scale production, only for small ones.
+ - IMPORTANT: this app doesn't use a webserver to store files only the GitHub repository. It is not recomended for large scale production.
  
  
- # ¿How it works?
+ # How it works?
   This app is designed to use it as a launcher for automatic updates for any other java application.
   When you double click this app it will prompt you with the Updates checker and if there is any update avaible it will download and install it for your client and later launch the app, and if there isn't any updates it will launch the app automatically.
   
@@ -20,7 +20,7 @@ This is a cheap option for an auto updater in java because it uses a GitHub repo
  
  
  
- # ¿How to use it?
+ # How to use it?
  
  The first thing you want to do is clone this repo and edit in ```'com.franciscodadone.utils.UpdaterConfig.java'``` the global app constants.
   - APP_NAME: Your application name
